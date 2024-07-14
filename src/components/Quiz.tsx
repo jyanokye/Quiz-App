@@ -3,6 +3,8 @@ import { ThemeProvider } from 'styled-components';
 import { questions, Subject } from '../data/questions';
 import Question from './Question';
 import { darkTheme, lightTheme } from '../styles/theme'; 
+import { ScoreWrapper,ScoreSection,YourScore,Score } from '../styles/QuizStyles';
+
 
 type QuizProps = {
   subject: string;
@@ -75,13 +77,26 @@ const Quiz: React.FC<QuizProps> = ({ subject, goBack, isDark }) => {
         )}
 
         {currentQuestionIndex === -1 && (
-          <div className={`score ${isDark ? 'dark' : 'light'}`}>
-            <h3>Quiz complete</h3>
-            <p>Your score: {score}</p>
-            <button onClick={handleReset} className={`submit-button ${isDark ? 'dark' : 'light'}`}>
-              Play Again
-            </button>
-          </div>
+          <ScoreSection>
+            <Score>
+          <ScoreWrapper>
+              <h1>Quiz Completed</h1>
+              <h3>You Scored...</h3>
+          </ScoreWrapper>
+          <YourScore>
+            <div>
+              <p>{score}</p>
+            </div>
+            <div>
+              <button onClick={handleReset} className={`submit-button ${isDark ? 'dark' : 'light'}`}>
+                Play Again
+              </button>
+            </div>
+          </YourScore>
+          </Score>
+        </ScoreSection>
+
+        
         )}
       </div>
     </ThemeProvider>

@@ -21,18 +21,34 @@ export const GlobalStyle = createGlobalStyle`
 }
   h1,h3,p {
   font-family: 'Rubik';}
-  
+ body{
+ width:100vw;
+ height:100vh;
+ } 
 `;
 export const MyToggleWrapper = styled.div`
 display:flex;
+
+padding-right:100px;
+
+justify-content:space-between;
 `;
 export const MyApp = styled.div`
-display:flex;
+display: flex;
+padding:100px;
 flex-direction:column;
-flex-wrap:wrap;
+justify-content:center;
+height:100vh;
+
+gap:40px;
+
+
+
+
 background-color: ${(props) => props.theme.backgroundColor};
   background-image: url(${(props) => props.theme.backgroundImageDesktop});
-  
+  background-size:cover;
+  overflow:hidden;
 
   @media (max-width: 1024px) {
     background-image: url(${(props) => props.theme.backgroundImageTablet});
@@ -44,6 +60,8 @@ background-color: ${(props) => props.theme.backgroundColor};
 `;
 
 export const Welcome = styled.div`
+  width:465px;
+  height:214px;
   h1 {
     color:  ${(props) => props.theme.color};
     font-size: 64px;
@@ -82,12 +100,17 @@ export const Welcome = styled.div`
      font-size:40px;
      }
      p{
-     font-size:14px;}
+     font-size:14px;
+     }
 `;
 
 export const Options = styled.div`
   display: flex;
+  width:564px;
+  height:456px;
+ padding-left:564px;
   flex-direction: column;
+  position:absolute;
   gap: 24px;
 `;
 
@@ -175,11 +198,9 @@ export const Option = styled.div`
 
 export const Apps = styled.div`
   display: flex;
-  padding: 224px 140px;
-  height:100%;
-  overflow:hidden;
-  gap:190px;
-  flex-wrap:wrap;
+  width:1053px;
+  height:456px;
+  justify-content:space-between;
   flex-direction: row;
 
 
@@ -193,6 +214,7 @@ export const Apps = styled.div`
     flex-direction: column;
   }
 `;
+
 
 
 

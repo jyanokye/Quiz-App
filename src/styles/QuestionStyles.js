@@ -2,11 +2,10 @@ import styled from 'styled-components';
 
 export const QuestionWrapper = styled.div`
   display: flex;
-    padding: 224px 140px 224px 140px;
+    width:1053px;
+  height:100%;
    
-    flex-wrap:wrap;
-    
-  background-color: ${(props) => props.theme.backgroundColor};
+   
   color: ${(props) => props.theme.color};
   justify-content: center;
    
@@ -55,7 +54,7 @@ export const ProgressBarContainer = styled.div`
 export const MyOptions = styled.div`
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: 32px;
     height:564px;
     width:564px;
     color: ${(props) => props.theme.color};
@@ -65,7 +64,7 @@ export const MyOptions = styled.div`
       align-items: center;
       flex-direction: row;
       width: 564px;
-      height: 96px;
+      height: 92px;
       cursor: pointer;
       border-radius:24px;
       }
@@ -145,7 +144,7 @@ export const SubmitButton = styled.button`
     color: white;
     font-size: 28px;
     width: 564px;
-    height: 96px;
+    height: 92px;
     cursor: pointer;
     background-color: #A729F5;
     border-radius: 24px;

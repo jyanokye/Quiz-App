@@ -13,20 +13,22 @@ const App: React.FC = () => {
 
   const startQuiz = (subject: string, icon: string) => {
     setSubject(subject);
-    setSubjectIcon(icon); // Set subject icon when starting quiz
+    setSubjectIcon(icon); 
   };
 
   const goBack = () => {
     setSubject(null);
-    setSubjectIcon(null); // Clear subject icon when going back
+    setSubjectIcon(null); 
   };
 
   return (
     <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
       <MyApp>
         <MyToggleWrapper>
-          {subjectIcon && <img src={subjectIcon} alt={`${subject} icon`} />} {/* Display subject icon */}
-          <div>{subject}</div> {/* Display subject name */}
+          <div>
+          {subjectIcon && <img src={subjectIcon} alt={`${subject} icon`} />} 
+          <div>{subject}</div>
+          </div>
           <Toggle isChecked={isDark} handleChange={() => setIsDark(!isDark)} />
         </MyToggleWrapper>
         {subject ? (
