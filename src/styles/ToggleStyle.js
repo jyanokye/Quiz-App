@@ -4,9 +4,9 @@ import styled from 'styled-components';
  display:flex;
  flex-direction:row;
   justify-content: space-between;
+  align-items: center;
  
- top:97px;
- right:140px;
+
  width:128px;
  height:28px;
  @media only screen and (max-width: 767px) {
@@ -21,9 +21,9 @@ export const ToggleWrapper = styled.div`
 
  .switch {
     display: inline-block;
-    height: 34px;
+    height: 28px;
     position: relative;
-    width: 60px;
+    width: 48px;
   }
 
    .switch input {
@@ -47,11 +47,11 @@ export const ToggleWrapper = styled.div`
 #fff;
     bottom: 4px;
     content: "";
-    height: 26px;
+    height: 20px;
     left: 4px;
     position: absolute;
     transition: .4s;
-    width: 26px;
+    width: 20px;
   }
 
    input:checked + .slider {
@@ -60,11 +60,11 @@ export const ToggleWrapper = styled.div`
   }
 
    input:checked + .slider:before {
-    transform: translateX(26px);
+    transform: translateX(20px);
   }
 
  .slider.round {
-    border-radius: 34px;
+    border-radius: 50px;
   }
 
   .slider.round:before {

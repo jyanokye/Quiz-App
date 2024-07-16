@@ -22,39 +22,60 @@ export const GlobalStyle = createGlobalStyle`
   h1,h3,p {
   font-family: 'Rubik';}
  body{
- width:100vw;
- height:100vh;
+ width:100%;
+ height:100%;
  } 
 `;
 export const MyToggleWrapper = styled.div`
 display:flex;
-
-padding-right:100px;
-
+align-items: center;
+margin-top: 97px;
 justify-content:space-between;
+margin-bottom: 55px;
+height: 56px;
+width: 1157px;
+div:first-child {
+  display: flex;
+  align-items: center;
+  width: auto;
+  gap: 24px;
+  justify-content: space-between;
+}
+   div:first-child div:first-child{
+  background-color:orange;
+  
+  }
+  
+  @media (max-width: 1024px) {
+  width: 640px;
+  }
+   @media (max-width: 767px) {
+   margin-top:0px;
+   margin-bottom:0px;
+    width: 375px;
+    padding:26px;
 `;
 export const MyApp = styled.div`
 display: flex;
-padding:100px;
+padding-bottom:83px;
 flex-direction:column;
+align-items:center;
 justify-content:center;
-height:100vh;
-
-gap:40px;
-
-
-
-
+ min-height: 100vh;
+width: 100%;
 background-color: ${(props) => props.theme.backgroundColor};
-  background-image: url(${(props) => props.theme.backgroundImageDesktop});
-  background-size:cover;
-  overflow:hidden;
+background-image: url(${(props) => props.theme.backgroundImageDesktop});
+background-size:cover;
+background-repeat: no-repeat;
+overflow-y: auto; 
 
   @media (max-width: 1024px) {
+  
     background-image: url(${(props) => props.theme.backgroundImageTablet});
   }
 
   @media (max-width: 767px) {
+  padding-bottom:0px;
     background-image: url(${(props) => props.theme.backgroundImageMobile});
   }
 `;
@@ -71,6 +92,7 @@ export const Welcome = styled.div`
   }
   h3 {
     color:  ${(props) => props.theme.color};
+    font-family: 'Rubik';
     font-size: 64px;
     margin:0px;
     padding-bottom: 48px;
@@ -78,7 +100,7 @@ export const Welcome = styled.div`
 
   }
   p {
-    color: #626C7F;
+    color:  ${(props) => props.theme.TextColor};
     font-size: 20px;
     font-style: italic;
     margin:0px;
@@ -108,9 +130,9 @@ export const Options = styled.div`
   display: flex;
   width:564px;
   height:456px;
- padding-left:564px;
+  
   flex-direction: column;
-  position:absolute;
+  
   gap: 24px;
 `;
 
@@ -198,10 +220,11 @@ export const Option = styled.div`
 
 export const Apps = styled.div`
   display: flex;
-  width:1053px;
-  height:456px;
-  justify-content:space-between;
+ padding:0 120px 224px 140px;
+  gap:110px;
   flex-direction: row;
+  width: 100%;
+  
 
 
   @media only screen and (min-width: 768px) and (max-width: 1024px) {

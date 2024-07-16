@@ -4,7 +4,7 @@ import { questions, Subject } from '../data/questions';
 import Question from './Question';
 import { darkTheme, lightTheme } from '../styles/theme'; 
 import { ScoreWrapper,ScoreSection,YourScore,Score } from '../styles/QuizStyles';
-
+import { subjectIconMapping } from './IconProvider';
 
 type QuizProps = {
   subject: string;
@@ -17,7 +17,6 @@ const Quiz: React.FC<QuizProps> = ({ subject, goBack, isDark }) => {
   const [score, setScore] = useState(0);
   const [answers, setAnswers] = useState<number[]>([]);
   const [answerSelected, setAnswerSelected] = useState(false);
-
   const questionData = questions[subject as Subject][currentQuestionIndex];
   const totalQuestions = questions[subject as Subject].length;
 
@@ -84,8 +83,10 @@ const Quiz: React.FC<QuizProps> = ({ subject, goBack, isDark }) => {
               <h3>You Scored...</h3>
           </ScoreWrapper>
           <YourScore>
+          <img src={subjectIconMapping[subject as Subject]} alt={`${subject} icon`} />
             <div>
-              <p>{score}</p>
+              <p>{score} <br/><span>of {totalQuestions}</span></p>
+              
             </div>
             <div>
               <button onClick={handleReset} className={`submit-button ${isDark ? 'dark' : 'light'}`}>

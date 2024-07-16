@@ -5,11 +5,12 @@ import { MyApp, MyToggleWrapper } from './styles/HomeStyle';
 import { Toggle } from './components/Toggle';
 import { ThemeProvider } from 'styled-components';
 import { lightTheme, darkTheme } from './styles/theme';
+import "./App.css"
 
 const App: React.FC = () => {
   const [isDark, setIsDark] = useState(false);
   const [subject, setSubject] = useState<string | null>(null);
-  const [subjectIcon, setSubjectIcon] = useState<string | null>(null); // State to store subject icon
+  const [subjectIcon, setSubjectIcon] = useState<string | null>(null); 
 
   const startQuiz = (subject: string, icon: string) => {
     setSubject(subject);
@@ -26,7 +27,8 @@ const App: React.FC = () => {
       <MyApp>
         <MyToggleWrapper>
           <div>
-          {subjectIcon && <img src={subjectIcon} alt={`${subject} icon`} />} 
+            <div>
+          {subjectIcon && <img src={subjectIcon} alt={`${subject} icon`} />}</div> 
           <div>{subject}</div>
           </div>
           <Toggle isChecked={isDark} handleChange={() => setIsDark(!isDark)} />
@@ -42,3 +44,4 @@ const App: React.FC = () => {
 };
 
 export default App;
+

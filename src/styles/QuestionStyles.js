@@ -2,24 +2,28 @@ import styled from 'styled-components';
 
 export const QuestionWrapper = styled.div`
   display: flex;
-    width:1053px;
-  height:100%;
-   
-   
+  width:1160px;
+  height:546px;
+  padding-bottom:100px;
   color: ${(props) => props.theme.color};
-  justify-content: center;
-   
-    flex-direction: row;
-    gap:168px;
+  justify-content: space-between;
+  flex-direction: row;
+  
   @media only screen and (min-width: 768px) and (max-width: 1024px) { 
-  } 
+  flex-direction:column;
+  width:640px;
+  }
+  @media (max-width: 767px) {
+   flex-direction:column; 
+   width:375px;
+  }
 `;
 
 
 export const MyQuestion = styled.div`
   display:flex;
   flex-direction:column;
-
+   
   height:452px;
   width:465px;
   justify-content:space-between;
@@ -54,9 +58,9 @@ export const ProgressBarContainer = styled.div`
 export const MyOptions = styled.div`
     display: flex;
     flex-direction: column;
-    gap: 32px;
-    height:564px;
+    height:636px;
     width:564px;
+    gap:32px;
     color: ${(props) => props.theme.color};
     .option{
       background-color: ${(props) => props.theme.optionBackgroundColor};
@@ -89,7 +93,11 @@ export const MyOptions = styled.div`
     .Know{
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    height:440px;
+  
+    justify-content:space-between;
+
+  
     }
 
     
@@ -133,7 +141,14 @@ export const MyOptions = styled.div`
         margin-left: auto;
         margin-right:3px;
     }
-  }  
+        @media (max-width: 767px) {
+      
+   .option{
+   height:64px;
+   width:327px;
+   }
+  }
+  } 
     `;
 
 
@@ -150,7 +165,7 @@ export const SubmitButton = styled.button`
     border-radius: 24px;
     border: none;
     padding:32px 179.5px 32px 179.5px;
-    margin-top:32px;
+    margin-top:10px;
 
   &:disabled {
     background-color: #ccc;
