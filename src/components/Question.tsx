@@ -48,7 +48,20 @@ const Question: React.FC<QuestionProps> = ({
       setSelectedOption(index);
     }
   };
+  
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>, index: number) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      handleOptionClick(index);
+    } else if (event.key === 'ArrowDown') {
 
+      const nextOption = document.querySelectorAll('.option')[index + 1] as HTMLElement;
+      if (nextOption) nextOption.focus();
+    } else if (event.key === 'ArrowUp') {
+     
+      const prevOption = document.querySelectorAll('.option')[index - 1] as HTMLElement;
+      if (prevOption) prevOption.focus();
+    }
+  };
   const handleButtonClick = () => {
     if (selectedOption === null) {
       setAttemptedSubmit(true);
@@ -86,6 +99,9 @@ const Question: React.FC<QuestionProps> = ({
                 className={`option ${selectedOption === index ? 'selected' : ''} ${isDark ? 'dark' : ''} ${(submitted)  ? (selectedOption === correctAnswer ? 'right':'wrong') : ''}`}
                 key={index}
                 onClick={() => handleOptionClick(index)}
+                onKeyDown={(event) => handleKeyDown(event, index)}
+            tabIndex={0}
+
               >
                 <div className={`OptionLetter ${(submitted)  ? (selectedOption === correctAnswer ? 'right':'wrong') : ''}`}><p>{String.fromCharCode(65 + index)}</p></div>
                 <p>{option}</p>
