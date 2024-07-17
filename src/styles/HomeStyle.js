@@ -19,17 +19,15 @@ export const GlobalStyle = createGlobalStyle`
   font-weight: 100 900; 
   font-style: italic;
 }
-  h1,h3,p {
-  font-family: 'Rubik';}
-  body, html {
-    width: 100%;
+ 
+  body {
+  font-family: 'Rubik', sans-serif;
+  width: 100%;
     height: 100%;
     margin: 0;
     padding:0;
-    font-family: 'Rubik';
-    
-    
 }
+
 `;
 export const MyToggleWrapper = styled.div`
 display:flex;
@@ -91,13 +89,13 @@ export const Welcome = styled.div`
   h1 {
     color:  ${(props) => props.theme.color};
     font-size: 64px;
-   font-family: 'Rubik';
+ 
     font-weight: lighter;
     margin:0px;
   }
   h3 {
     color:  ${(props) => props.theme.color};
-    font-family: 'Rubik';
+   
     font-size: 64px;
     margin:0px;
     padding-bottom: 48px;

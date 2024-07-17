@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { questions, Subject } from '../data/questions';
 import Question from './Question';
-import { darkTheme, lightTheme } from '../styles/theme'; 
+import { darkTheme, lightTheme } from '../styles/theme';
+import {GlobalStyle } from '../styles/HomeStyle'; 
 import { ScoreWrapper,ScoreSection,YourScore,Score } from '../styles/QuizStyles';
 import { subjectIconMapping } from './IconProvider';
 
@@ -59,6 +60,7 @@ const Quiz: React.FC<QuizProps> = ({ subject, goBack, isDark }) => {
 
   return (
     <ThemeProvider theme={theme}>
+     
       <div >
         {currentQuestionIndex !== -1 && (
           <Question
@@ -77,21 +79,26 @@ const Quiz: React.FC<QuizProps> = ({ subject, goBack, isDark }) => {
 
         {currentQuestionIndex === -1 && (
           <ScoreSection>
+              <GlobalStyle/>
             <Score>
           <ScoreWrapper>
               <h1>Quiz Completed</h1>
               <h3>You Scored...</h3>
           </ScoreWrapper>
           <YourScore>
-          <img src={subjectIconMapping[subject as Subject]} alt={`${subject} icon`} />
-          <p>{subject}</p>
             <div>
-              <p>{score} <br/><span>of {totalQuestions}</span></p>
-              
+              <div>
+              <img src={subjectIconMapping[subject as Subject]} alt={`${subject} icon`} />
+              <p>{subject}</p>
+              </div>
+              <div>
+                <p>{score}</p>
+                <span>of {totalQuestions}</span>
+              </div>
             </div>
             <div>
               <button onClick={handleReset} className={`submit-button ${isDark ? 'dark' : 'light'}`}>
-                Play Again
+                Play Again 
               </button>
             </div>
           </YourScore>
