@@ -1,5 +1,5 @@
 import React from 'react';
-import { Apps, Welcome, Options, Option, IconWrapper, GlobalStyle } from '../styles/HomeStyle';
+import { Apps, Welcome, Options, Option, IconWrapper} from '../styles/HomeStyle';
 import htmlIcon from '../assets/images/icon-html.svg';
 import cssIcon from '../assets/images/icon-css.svg';
 import jsIcon from '../assets/images/icon-js.svg';
@@ -8,7 +8,7 @@ import { darkTheme, lightTheme } from '../styles/theme';
 import { ThemeProvider } from 'styled-components';
 
 type HomeProps = {
-  startQuiz: (subject: string, icon: string) => void; // Updated prop type to include icon
+  startQuiz: (subject: string, icon: string) => void; 
   isDark: boolean; 
 };
 
@@ -17,7 +17,6 @@ const Home: React.FC<HomeProps> = ({ startQuiz, isDark }) => {
 
   return (
     <ThemeProvider theme={theme}>
-      <GlobalStyle />
       <Apps>
         <Welcome>
           <h1>Welcome to the</h1>

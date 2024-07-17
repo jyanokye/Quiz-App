@@ -84,6 +84,7 @@ const Quiz: React.FC<QuizProps> = ({ subject, goBack, isDark }) => {
           </ScoreWrapper>
           <YourScore>
           <img src={subjectIconMapping[subject as Subject]} alt={`${subject} icon`} />
+          <p>{subject}</p>
             <div>
               <p>{score} <br/><span>of {totalQuestions}</span></p>
               

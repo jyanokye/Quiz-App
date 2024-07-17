@@ -3,11 +3,13 @@ import styled from 'styled-components';
 
 export const ScoreSection = styled.div`
   display:flex;
-  
+  height: auto;
+  min-height: 512px;
   color: ${(props) => props.theme.color};
   padding-top:140px;
   width:1157px;
-  height:512px;
+  
+  overflow:hidden;
 `;
 export const Score = styled.div`
 display:flex;

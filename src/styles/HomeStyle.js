@@ -21,10 +21,15 @@ export const GlobalStyle = createGlobalStyle`
 }
   h1,h3,p {
   font-family: 'Rubik';}
- body{
- width:100%;
- height:100%;
- } 
+  body, html {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding:0;
+    font-family: 'Rubik';
+    
+    
+}
 `;
 export const MyToggleWrapper = styled.div`
 display:flex;
@@ -67,7 +72,7 @@ background-color: ${(props) => props.theme.backgroundColor};
 background-image: url(${(props) => props.theme.backgroundImageDesktop});
 background-size:cover;
 background-repeat: no-repeat;
-overflow-y: auto; 
+overflow-x: hidden; 
 
   @media (max-width: 1024px) {
   
@@ -190,13 +195,7 @@ export const Option = styled.div`
     color: #fff;
   }
 
-  &.selected {
-    border: 2px solid #A729F5;
-    .OptionLetter {
-      color: white;
-      background-color: #a729f5;
-    }
-  }
+
 
   &:hover .OptionLetter {
     background-color: #F6E7FF;

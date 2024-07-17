@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Home from './components/Home';
 import Quiz from './components/Quiz';
-import { MyApp, MyToggleWrapper } from './styles/HomeStyle';
+import { MyApp, MyToggleWrapper,GlobalStyle } from './styles/HomeStyle';
 import { Toggle } from './components/Toggle';
 import { ThemeProvider } from 'styled-components';
 import { lightTheme, darkTheme } from './styles/theme';
@@ -24,6 +24,7 @@ const App: React.FC = () => {
 
   return (
     <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
+        <GlobalStyle/>
       <MyApp>
         <MyToggleWrapper>
           <div>

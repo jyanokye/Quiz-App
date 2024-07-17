@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-
 import CorrectIcon from '../assets/images/icon-correct.svg';
 import WrongIcon from '../assets/images/icon-incorrect.svg';
 import { ThemeProvider } from 'styled-components';
@@ -67,6 +66,7 @@ const Question: React.FC<QuestionProps> = ({
   const theme = isDark ? darkTheme: lightTheme ;
 
   return (
+    
     <ThemeProvider theme={theme}>
       <QuestionWrapper>
         <MyQuestion>
@@ -88,7 +88,7 @@ const Question: React.FC<QuestionProps> = ({
                 onClick={() => handleOptionClick(index)}
               >
                 <div className={`OptionLetter ${(submitted)  ? (selectedOption === correctAnswer ? 'right':'wrong') : ''}`}><p>{String.fromCharCode(65 + index)}</p></div>
-                {option}
+                <p>{option}</p>
                 {showFeedback && (
                   <div className="answer-feedback">
                     {selectedOption === index && selectedOption === correctAnswer && (

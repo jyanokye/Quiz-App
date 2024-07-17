@@ -2,22 +2,30 @@ import styled from 'styled-components';
 
 export const QuestionWrapper = styled.div`
   display: flex;
-  width:1160px;
-  height:546px;
-  padding-bottom:100px;
+
+  width: 1160px;
+  height: auto;
+  min-height: 546px;
+
+
   color: ${(props) => props.theme.color};
   justify-content: space-between;
   flex-direction: row;
-  
+  overflow:hidden;
   @media only screen and (min-width: 768px) and (max-width: 1024px) { 
   flex-direction:column;
   width:640px;
   }
   @media (max-width: 767px) {
+  align-items:center;
+ 
    flex-direction:column; 
    width:375px;
+   gap:40px;
+    margin-bottom:80px;
   }
 `;
+
 
 
 export const MyQuestion = styled.div`
@@ -34,6 +42,18 @@ export const MyQuestion = styled.div`
     margin-bottom:0;
     color: #626C7F;
     }
+    h2{
+    font-size:36px;
+    }
+     @media (max-width: 767px){
+      height:129px;
+  width:327px;
+  gap:24px;
+  justify-content:space-between;
+     }
+  h2{
+        font-size:20px;
+  }
 `;
 
 export const ProgressBarContainer = styled.div`
@@ -50,6 +70,11 @@ export const ProgressBarContainer = styled.div`
     border-radius: 10px;
     transition: width 0.5s ease; 
   }
+     @media (max-width: 767px) {
+     position:relative;
+     width:327px;
+   
+     }
 `;
 
 
@@ -89,6 +114,7 @@ export const MyOptions = styled.div`
     .selected.wrong.option .OptionLetter{
     background-color:#EE5454 ;
     }
+    
   
     .Know{
     display: flex;
@@ -100,17 +126,17 @@ export const MyOptions = styled.div`
   
     }
 
-    
- 
-
   .selected.option  {
     border: 2px solid #A729F5 ;
   }
     
     .option.selected .OptionLetter {
-  color: white;
+
   background-color: #a729f5;
 }
+      .option.selected .OptionLetter p{
+        color: white;
+      }
 
   .OptionLetter {
     display: flex;
@@ -124,15 +150,19 @@ export const MyOptions = styled.div`
     height: 56px;
     background-color: #F4F6FA;
   }
-    .option {
- 
+
+  .option {
   transition: background-color 0.3s, color 0.3s;
-}
+  }
+  .option p{
+   color: color: ${(props) => props.theme.color};;
+      font-weight:500; 
+  }
     .OptionLetter {
   transition: color 0.3s ease; 
 }
   .OptionLetter p{
-    font-family: 'Rubik';
+   color: #626C7F;
     font-weight: 500;
   font-size:28px;
   }
@@ -142,13 +172,26 @@ export const MyOptions = styled.div`
         margin-right:3px;
     }
         @media (max-width: 767px) {
-      
+      height: 360px;
+    width: 327px;
    .option{
+   border-radius:12px;
    height:64px;
    width:327px;
    }
+   .OptionLetter{
+   width:40px;
+   height:40px;
+   border-radius:6px;
+   }
+   .OptionLetter p{
+   font-size:18px;}
   }
+    .Know{
+   
+    gap:12px;}
   } 
+
     `;
 
 
@@ -170,6 +213,13 @@ export const SubmitButton = styled.button`
   &:disabled {
     background-color: #ccc;
   }
+    @media (max-width: 767px){
+    width: 327px;
+    height: 56px;
+    font-size: 18px;
+    border-radius: 16px;
+    padding:19px 97.5px 19px 97.5px;
+    }
 `;
 export const Error = styled.div`
 display:flex;
