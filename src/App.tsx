@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Home from './components/Home';
 import Quiz from './components/Quiz';
 import { MyApp, MyToggleWrapper,GlobalStyle } from './styles/HomeStyle';
-import { Toggle } from './components/Toggle';
+import Toggle from './components/Toggle';
 import { ThemeProvider } from 'styled-components';
 import { lightTheme, darkTheme } from './styles/theme';
 import "./App.css"
@@ -26,13 +26,13 @@ const App: React.FC = () => {
     <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
         <GlobalStyle/>
       <MyApp>
-        <MyToggleWrapper>
+        <MyToggleWrapper >
           <div>
-            <div>
+            <div className={`${subject}-Icon`}>
           {subjectIcon && <img src={subjectIcon} alt={`${subject} icon`} />}</div> 
-          <div>{subject}</div>
+          <div><p>{subject}</p></div>
           </div>
-          <Toggle isChecked={isDark} handleChange={() => setIsDark(!isDark)} />
+          <Toggle isChecked={isDark} handleChange={() => setIsDark(!isDark)}/>
         </MyToggleWrapper>
         {subject ? (
           <Quiz subject={subject} goBack={goBack} isDark={isDark} />
