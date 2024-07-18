@@ -93,7 +93,7 @@ const Quiz: React.FC<QuizProps> = ({ subject, goBack, isDark }) => {
               </div>
               <div>
                 <p>{score}</p>
-                <span>of {totalQuestions}</span>
+                <span> Out of {totalQuestions}</span>
               </div>
             </div>
             <div>
