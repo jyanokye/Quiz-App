@@ -85,6 +85,8 @@ export const MyOptions = styled.div`
     flex-direction: column;
     height:636px;
     width:564px;
+    margin-top:3px;
+    margin-right:3px;
     gap:32px;
     color: ${(props) => props.theme.color};
     .option{
@@ -97,6 +99,10 @@ export const MyOptions = styled.div`
       cursor: pointer;
       border-radius:24px;
       }
+      .option:focus {
+  outline: 2px solid #A729F5 ; 
+
+}
      
     .option:hover .OptionLetter {
     background-color: #F6E7FF;
@@ -120,16 +126,9 @@ export const MyOptions = styled.div`
     display: flex;
     flex-direction: column;
     height:440px;
-  
     justify-content:space-between;
-
-  
     }
 
-  .selected.option  {
-    border: 2px solid #A729F5 ;
-  }
-    
     .option.selected .OptionLetter {
 
   background-color: #a729f5;

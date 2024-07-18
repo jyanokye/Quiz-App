@@ -36,7 +36,6 @@ const Question: React.FC<QuestionProps> = ({
   const [showFeedback, setShowFeedback] = useState<boolean>(false);
 
   useEffect(() => {
-    
     setSubmitted(false);
     setShowFeedback(false);
     setSelectedOption(null);
@@ -53,15 +52,54 @@ const Question: React.FC<QuestionProps> = ({
     if (event.key === 'Enter' || event.key === ' ') {
       handleOptionClick(index);
     } else if (event.key === 'ArrowDown') {
-
+      event.preventDefault(); 
       const nextOption = document.querySelectorAll('.option')[index + 1] as HTMLElement;
-      if (nextOption) nextOption.focus();
+      if (nextOption) {
+        nextOption.focus();
+      } else {
+        const submitButton = document.querySelector('.submit-button') as HTMLElement;
+        if (submitButton) {
+          submitButton.focus();
+        }
+      }
     } else if (event.key === 'ArrowUp') {
-     
+      event.preventDefault(); 
       const prevOption = document.querySelectorAll('.option')[index - 1] as HTMLElement;
-      if (prevOption) prevOption.focus();
+      if (prevOption) {
+        prevOption.focus();
+      } else {
+        const lastOption = document.querySelectorAll('.option')[options.length - 1] as HTMLElement;
+        if (lastOption) {
+          lastOption.focus();
+        }
+      }
+    } else if (event.key === 'Tab') {
+      if (index === options.length - 1) {
+        event.preventDefault(); 
+        const submitButton = document.querySelector('.submit-button') as HTMLElement;
+        if (submitButton) {
+          submitButton.focus();
+        }
+      } else if (index === options.length) {
+        event.preventDefault(); 
+        const themeButton = document.querySelector('.theme-button') as HTMLElement;
+        if (themeButton) {
+          themeButton.focus();
+        }
+      }
     }
   };
+  
+  const handleButtonKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
+    if (event.key === 'ArrowDown' || event.key === 'Tab') {
+      event.preventDefault();
+      const themeButton = document.querySelector('.theme-button') as HTMLElement;
+      if (themeButton) {
+        themeButton.focus();
+      }
+    }
+  };
+  
   const handleButtonClick = () => {
     if (selectedOption === null) {
       setAttemptedSubmit(true);
@@ -79,7 +117,6 @@ const Question: React.FC<QuestionProps> = ({
   const theme = isDark ? darkTheme: lightTheme ;
 
   return (
-    
     <ThemeProvider theme={theme}>
       <QuestionWrapper>
         <MyQuestion>
@@ -100,8 +137,7 @@ const Question: React.FC<QuestionProps> = ({
                 key={index}
                 onClick={() => handleOptionClick(index)}
                 onKeyDown={(event) => handleKeyDown(event, index)}
-            tabIndex={0}
-
+                tabIndex={0}
               >
                 <div className={`OptionLetter ${(submitted)  ? (selectedOption === correctAnswer ? 'right':'wrong') : ''}`}><p>{String.fromCharCode(65 + index)}</p></div>
                 <p>{option}</p>
@@ -123,10 +159,14 @@ const Question: React.FC<QuestionProps> = ({
           </div>
           
           {currentQuestionIndex !== -1 && (
-            <SubmitButton onClick={handleButtonClick}>
+            <SubmitButton
+              className="submit-button"
+              onClick={handleButtonClick}
+              onKeyDown={handleButtonKeyDown}
+              tabIndex={0}
+            >
               {submitted && showFeedback ? (currentQuestionIndex === totalQuestions - 1 ? 'Finish Quiz' : 'Next Question') : 'Submit Answer'}
             </SubmitButton>
-          
           )}
           {attemptedSubmit && selectedOption === null && (
             <Error> <img src={WrongIcon} alt="Incorrect" className="incorrect" /><p>Please select an answer before submitting</p></Error>
