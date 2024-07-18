@@ -25,14 +25,14 @@ const Home: React.FC<HomeProps> = ({ startQuiz, isDark }) => {
   
     if (event.key === 'Enter' || event.key === ' ') {
       const target = options[index] as HTMLDivElement;
-      target.click(); // Simulate click on Enter or Space
+      target.click();
     } else if (event.key === 'ArrowDown') {
       event.preventDefault();
       const nextIndex = index + 1;
       if (nextIndex < totalOptions) {
         options[nextIndex]?.focus();
       } else {
-        // Move focus to the theme button
+       
         const themeButton = document.querySelector('.theme-button') as HTMLElement;
         if (themeButton) {
           themeButton.focus();
@@ -44,11 +44,11 @@ const Home: React.FC<HomeProps> = ({ startQuiz, isDark }) => {
       if (prevIndex >= 0) {
         options[prevIndex]?.focus();
       } else {
-        // Move focus to the last option
+      
         options[totalOptions - 1]?.focus();
       }
     } else if (event.key === 'Tab' && index === totalOptions - 1) {
-      // Prevent default tab behavior outside the app
+     
       event.preventDefault();
       const themeButton = document.querySelector('.theme-button') as HTMLElement;
       if (themeButton) {
