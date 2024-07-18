@@ -1,24 +1,17 @@
 import styled from 'styled-components';
 
  export const ThemeWrapper = styled.div`
- display:flex;
- flex-direction:row;
+  display:flex;
+  flex-direction:row;
   justify-content: space-between;
   align-items: center;
- 
-
- width:128px;
- height:28px;
- @media only screen and (max-width: 767px) {
-
-  }
+  width:128px;
+  height:28px;
   `;
 
 export const ToggleWrapper = styled.div`
   display: flex;
   flex-direction:row;
-  
-
  .switch {
     display: inline-block;
     height: 28px;
@@ -31,8 +24,7 @@ export const ToggleWrapper = styled.div`
   }
 
    .slider {
-    background-color: 
-#A729F5;
+    background-color:#A729F5;
     bottom: 0;
     cursor: pointer;
     left: 0;
@@ -43,8 +35,7 @@ export const ToggleWrapper = styled.div`
   }
 
    .slider:before {
-    background-color: 
-#fff;
+    background-color: #fff;
     bottom: 4px;
     content: "";
     height: 20px;
@@ -55,8 +46,7 @@ export const ToggleWrapper = styled.div`
   }
 
    input:checked + .slider {
-    background-color: 
-#A729F5;
+    background-color: #A729F5;
   }
 
    input:checked + .slider:before {
@@ -70,7 +60,7 @@ export const ToggleWrapper = styled.div`
   .slider.round:before {
     border-radius: 50%;
   }
-     .icon {
+  .icon {
     display: none;
     position: absolute;
     width: 20px;
@@ -78,6 +68,4 @@ export const ToggleWrapper = styled.div`
     top: 50%;
     transform: translateY(-50%);
   }
-
- 
 `;

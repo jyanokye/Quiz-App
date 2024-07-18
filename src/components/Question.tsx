@@ -3,6 +3,7 @@ import CorrectIcon from '../assets/images/icon-correct.svg';
 import WrongIcon from '../assets/images/icon-incorrect.svg';
 import { ThemeProvider } from 'styled-components';
 import { darkTheme, lightTheme } from '../styles/theme';
+
 import {
   SubmitButton,
   Error,

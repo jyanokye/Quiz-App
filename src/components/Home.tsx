@@ -1,11 +1,13 @@
-import React, { useRef } from 'react';
-import { Apps, Welcome, Options, Option, IconWrapper } from '../styles/HomeStyle'; // Make sure to import correct components
+import React, { useRef, useEffect, useState } from 'react';
+import { Apps, Welcome, Options, Option, IconWrapper } from '../styles/HomeStyle';
+import { darkTheme, lightTheme } from '../styles/theme';
+import { ThemeProvider } from 'styled-components';
+import quizzesData from '../data/data.json'; 
+import { QuizData } from '../data/types';
 import htmlIcon from '../assets/images/icon-html.svg';
 import cssIcon from '../assets/images/icon-css.svg';
 import jsIcon from '../assets/images/icon-js.svg';
 import accessibilityIcon from '../assets/images/icon-accessibility.svg';
-import { darkTheme, lightTheme } from '../styles/theme';
-import { ThemeProvider } from 'styled-components';
 
 type HomeProps = {
   startQuiz: (subject: string, icon: string) => void;
@@ -14,7 +16,12 @@ type HomeProps = {
 
 const Home: React.FC<HomeProps> = ({ startQuiz, isDark }) => {
   const theme = isDark ? darkTheme : lightTheme;
-  const optionRefs = useRef<(HTMLDivElement | null)[]>([null, null, null, null]); // Initialize with actual DOM element refs
+  const optionRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const [quizzes, setQuizzes] = useState<QuizData[]>([]);
+
+  useEffect(() => {
+    setQuizzes(quizzesData.quizzes); // Assuming quizzesData is correctly imported and structured
+  }, []);
 
   const handleOptionKeyDown = (
     event: React.KeyboardEvent<HTMLDivElement>,
@@ -26,13 +33,13 @@ const Home: React.FC<HomeProps> = ({ startQuiz, isDark }) => {
     if (event.key === 'Enter' || event.key === ' ') {
       const target = options[index];
       if (target) {
-        target.click(); 
+        target.click();
       }
     } else if (event.key === 'ArrowDown') {
       event.preventDefault();
       const nextIndex = index + 1;
       if (nextIndex < totalOptions && options[nextIndex]) {
-        options[nextIndex]!.focus(); 
+        options[nextIndex]!.focus();
       } else {
         const themeButton = document.querySelector('.theme-button') as HTMLElement;
         if (themeButton) {
@@ -43,9 +50,9 @@ const Home: React.FC<HomeProps> = ({ startQuiz, isDark }) => {
       event.preventDefault();
       const prevIndex = index - 1;
       if (prevIndex >= 0 && options[prevIndex]) {
-        options[prevIndex]!.focus(); 
-      } else {  
-        options[totalOptions - 1]!.focus(); 
+        options[prevIndex]!.focus();
+      } else {
+        options[totalOptions - 1]!.focus();
       }
     } else if (event.key === 'Tab' && index === totalOptions - 1) {
       event.preventDefault();
@@ -56,6 +63,8 @@ const Home: React.FC<HomeProps> = ({ startQuiz, isDark }) => {
     }
   };
 
+ 
+
   return (
     <ThemeProvider theme={theme}>
       <Apps>
@@ -65,54 +74,24 @@ const Home: React.FC<HomeProps> = ({ startQuiz, isDark }) => {
           <p>Pick a subject to get started</p>
         </Welcome>
         <Options>
-          <Option
-            className="option"
-            onClick={() => startQuiz('HTML', htmlIcon)}
-            tabIndex={0}
-            onKeyDown={(event) => handleOptionKeyDown(event, 0, 4)} // Total options count is 4
-            ref={(ref) => (optionRefs.current[0] = ref)}
-          >
-            <IconWrapper className="HTML-Icon">
-              <img src={htmlIcon} alt="HTML icon" className="icon" />
-            </IconWrapper>
-            <p>HTML</p>
-          </Option>
-          <Option
-            className="option"
-            onClick={() => startQuiz('CSS', cssIcon)}
-            tabIndex={0}
-            onKeyDown={(event) => handleOptionKeyDown(event, 1, 4)}
-            ref={(ref) => (optionRefs.current[1] = ref)}
-          >
-            <IconWrapper className="CSS-Icon">
-              <img src={cssIcon} alt="CSS icon" className="icon" />
-            </IconWrapper>
-            <p>CSS</p>
-          </Option>
-          <Option
-            className="option"
-            onClick={() => startQuiz('Javascript', jsIcon)}
-            tabIndex={0}
-            onKeyDown={(event) => handleOptionKeyDown(event, 2, 4)} 
-            ref={(ref) => (optionRefs.current[2] = ref)}
-          >
-            <IconWrapper className="JS-Icon">
-              <img src={jsIcon} alt="JavaScript icon" className="icon" />
-            </IconWrapper>
-            <p>JavaScript</p>
-          </Option>
-          <Option
-            className="option"
-            onClick={() => startQuiz('Accessibility', accessibilityIcon)}
-            tabIndex={0}
-            onKeyDown={(event) => handleOptionKeyDown(event, 3, 4)}
-            ref={(ref) => (optionRefs.current[3] = ref)}
-          >
-            <IconWrapper className="Access-Icon">
-              <img src={accessibilityIcon} alt="Accessibility icon" className="icon" />
-            </IconWrapper>
-            <p>Accessibility</p>
-          </Option>
+          {quizzes.map((quiz, quizIndex) => (
+            <Option
+              key={quizIndex}
+              className="option"
+              onClick={() => startQuiz(quiz.title, quiz.icon)}
+              tabIndex={0}
+              onKeyDown={(event) => handleOptionKeyDown(event, quizIndex, quizzes.length)}
+              ref={(ref) => (optionRefs.current[quizIndex] = ref)}
+            >
+              <IconWrapper className={`${quiz.title}-Icon`}>
+                {quiz.title === 'HTML' && <img src={htmlIcon} alt="HTML icon" className="icon" />}
+                {quiz.title === 'CSS' && <img src={cssIcon} alt="CSS icon" className="icon" />}
+                {quiz.title === 'JavaScript' && <img src={jsIcon} alt="JavaScript icon" className="icon" />}
+                {quiz.title === 'Accessibility' && <img src={accessibilityIcon} alt="Accessibility icon" className="icon" />}
+              </IconWrapper>
+              <p>{quiz.title}</p>
+            </Option>
+          ))}
         </Options>
       </Apps>
     </ThemeProvider>
