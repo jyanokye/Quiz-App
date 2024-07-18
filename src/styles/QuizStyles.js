@@ -9,7 +9,6 @@ export const ScoreSection = styled.div`
   padding-top:20px;
   min-width:1157px;
   justify-content:space-between;
-  
   overflow:hidden;
 `;
 export const Score = styled.div`
@@ -17,6 +16,20 @@ display:flex;
 flex-direction: row;
  min-width:1157px;
 justify-content:space-between;
+
+   @media only screen and (min-width: 768px) and (max-width: 1024px){
+        align-items:center;
+        gap:64px;
+        flex-direction:column;
+        max-width:640px;
+   }
+        @media only screen and (max-width: 767px) {
+          align-items:center;
+        gap:40px;
+        flex-direction:column;
+        width:375px;
+        }
+     
 `;
 
 export const ScoreWrapper = styled.div`
@@ -36,7 +49,12 @@ export const ScoreWrapper = styled.div`
     
     font-weight: 500;
   }
-
+@media only screen and (max-width: 767px) {
+h1{
+font-size: 40px;
+}
+h3{
+font-size: 40px;}}
  
 `;
 export const YourScore = styled.div`
@@ -75,7 +93,7 @@ div:last-child button{
     background-color: #A729F5;
     border-radius: 24px;
     border: none;
-    padding:32px 179.5px 32px 179.5px;
+    padding:32px 179.5px ;
     margin-top:32px;
 }
     div:first-child div:last-child span{
@@ -91,4 +109,22 @@ font-family: 'Rubik';
     margin:0px;
     font-weight: 500;
 }
+    @media only screen and (max-width: 767px) {
+    div:first-child{
+    padding: 0 24px 0 24px;
+    height:242px;
+width:325px;
+    }
+ div:first-child div:last-child span{
+   font-size: 18px;}
+div:first-child div:last-child p{
+ font-size: 88px;}
+    }
+ div:last-child button{
+  padding: 19px 112px;
+ max-width:325px;
+ height:56px;
+ font-size: 18px;
+ border-radius:12px;
+ }
 `;

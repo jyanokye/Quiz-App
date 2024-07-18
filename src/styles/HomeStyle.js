@@ -40,20 +40,47 @@ width: 1157px;
 div:first-child {
   display: flex;
   align-items: center;
+  height:56px;
   width: auto;
   gap: 24px;
   justify-content: space-between;
 }
-   div:first-child div:first-child{
-  background-color:orange;
+   div:first-child div{
+     display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 7px;
+
+  width: 56px;
+  height: 56px;
+
+    &.HTML-Icon {
+    background-color: #FFF1E9;
+  }
+  &.CSS-Icon {
+    background-color: #E0FDEF;
+  }
+  &.Javascript-Icon {
+    background-color: #EBF0FF;
+  }
+  &.Accessibility-Icon {
+    background-color: #F6E7FF;
+  }
+
   
   }
+     div:first-child div:last-child{
+     
+        font-weight: 500;
+     color:  ${(props) => props.theme.color};
+     font-size:20px;
+     }
   
   @media (max-width: 1024px) {
   width: 640px;
   }
    @media (max-width: 767px) {
-   margin-top:0px;
+   margin-top:20px;
    margin-bottom:0px;
     width: 375px;
     padding:26px;
@@ -116,13 +143,16 @@ export const Welcome = styled.div`
     p {
       color: #ABC1E1;
     }
-  }
+  } 
+    
      @media only screen and (max-width: 767px) {
-     h1{
+     width:327px;
+     height:125px;
+     h1,h3{
         font-size:40px;
         }
      h3{
-     font-size:40px;
+     padding-bottom:16px;
      }
      p{
      font-size:14px;
@@ -165,6 +195,7 @@ export const IconWrapper = styled.div`
     width: 40px;
     height: 40px;
   }
+    
      @media only screen and (max-width: 767px) {
      width: 40px;
      height: 40px;
@@ -201,7 +232,7 @@ export const Option = styled.div`
   }
 
   p {
-    font-size: 28px;
+    font-size: 23px;
     font-weight: 500;
   }
     @media only screen and (max-width: 767px) {
