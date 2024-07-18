@@ -1,9 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import CorrectIcon from '../assets/images/icon-correct.svg';
 import WrongIcon from '../assets/images/icon-incorrect.svg';
 import { ThemeProvider } from 'styled-components';
 import { darkTheme, lightTheme } from '../styles/theme';
-import { SubmitButton, Error, MyOptions, ProgressBarContainer, QuestionWrapper, MyQuestion } from '../styles/QuestionStyles';
+import {
+  SubmitButton,
+  Error,
+  MyOptions,
+  ProgressBarContainer,
+  QuestionWrapper,
+  MyQuestion,
+} from '../styles/QuestionStyles';
 
 type QuestionProps = {
   isDark: boolean;
@@ -28,12 +35,14 @@ const Question: React.FC<QuestionProps> = ({
   completionPercentage,
   handleSubmit,
   isDark,
-  correctAnswer
+  correctAnswer,
 }) => {
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
   const [attemptedSubmit, setAttemptedSubmit] = useState<boolean>(false);
   const [submitted, setSubmitted] = useState<boolean>(false);
   const [showFeedback, setShowFeedback] = useState<boolean>(false);
+
+  const errorRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setSubmitted(false);
@@ -41,18 +50,25 @@ const Question: React.FC<QuestionProps> = ({
     setSelectedOption(null);
   }, [currentQuestionIndex]);
 
+ 
+  useEffect(() => {
+    if (attemptedSubmit && selectedOption === null && errorRef.current) {
+      errorRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }, [attemptedSubmit, selectedOption]);
+
   const handleOptionClick = (index: number) => {
     if (!submitted) {
       onSelect(index);
       setSelectedOption(index);
     }
   };
-  
+
   const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>, index: number) => {
     if (event.key === 'Enter' || event.key === ' ') {
       handleOptionClick(index);
     } else if (event.key === 'ArrowDown') {
-      event.preventDefault(); 
+      event.preventDefault();
       const nextOption = document.querySelectorAll('.option')[index + 1] as HTMLElement;
       if (nextOption) {
         nextOption.focus();
@@ -63,7 +79,7 @@ const Question: React.FC<QuestionProps> = ({
         }
       }
     } else if (event.key === 'ArrowUp') {
-      event.preventDefault(); 
+      event.preventDefault();
       const prevOption = document.querySelectorAll('.option')[index - 1] as HTMLElement;
       if (prevOption) {
         prevOption.focus();
@@ -75,13 +91,13 @@ const Question: React.FC<QuestionProps> = ({
       }
     } else if (event.key === 'Tab') {
       if (index === options.length - 1) {
-        event.preventDefault(); 
+        event.preventDefault();
         const submitButton = document.querySelector('.submit-button') as HTMLElement;
         if (submitButton) {
           submitButton.focus();
         }
       } else if (index === options.length) {
-        event.preventDefault(); 
+        event.preventDefault();
         const themeButton = document.querySelector('.theme-button') as HTMLElement;
         if (themeButton) {
           themeButton.focus();
@@ -89,7 +105,7 @@ const Question: React.FC<QuestionProps> = ({
       }
     }
   };
-  
+
   const handleButtonKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
     if (event.key === 'ArrowDown' || event.key === 'Tab') {
       event.preventDefault();
@@ -99,7 +115,7 @@ const Question: React.FC<QuestionProps> = ({
       }
     }
   };
-  
+
   const handleButtonClick = () => {
     if (selectedOption === null) {
       setAttemptedSubmit(true);
@@ -114,14 +130,16 @@ const Question: React.FC<QuestionProps> = ({
     }
   };
 
-  const theme = isDark ? darkTheme: lightTheme ;
+  const theme = isDark ? darkTheme : lightTheme;
 
   return (
     <ThemeProvider theme={theme}>
       <QuestionWrapper>
         <MyQuestion>
           <div>
-            <p>Question {currentQuestionIndex + 1} of {totalQuestions}</p>
+            <p>
+              Question {currentQuestionIndex + 1} of {totalQuestions}
+            </p>
             <h2>{question}</h2>
           </div>
           <ProgressBarContainer>
@@ -133,31 +151,39 @@ const Question: React.FC<QuestionProps> = ({
           <div className="Know">
             {options.map((option, index) => (
               <div
-                className={`option ${selectedOption === index ? 'selected' : ''} ${isDark ? 'dark' : ''} ${(submitted)  ? (selectedOption === correctAnswer ? 'right':'wrong') : ''}`}
+                className={`option ${selectedOption === index ? 'selected' : ''} ${
+                  isDark ? 'dark' : ''
+                } ${submitted ? (selectedOption === correctAnswer ? 'right' : 'wrong') : ''}`}
                 key={index}
                 onClick={() => handleOptionClick(index)}
                 onKeyDown={(event) => handleKeyDown(event, index)}
                 tabIndex={0}
               >
-                <div className={`OptionLetter ${(submitted)  ? (selectedOption === correctAnswer ? 'right':'wrong') : ''}`}><p>{String.fromCharCode(65 + index)}</p></div>
+                <div
+                  className={`OptionLetter ${
+                    submitted ? (selectedOption === correctAnswer ? 'right' : 'wrong') : ''
+                  }`}
+                >
+                  <p>{String.fromCharCode(65 + index)}</p>
+                </div>
                 <p>{option}</p>
                 {showFeedback && (
                   <div className="answer-feedback">
                     {selectedOption === index && selectedOption === correctAnswer && (
-                      <img src={CorrectIcon} className='correct' alt='correct' />
+                      <img src={CorrectIcon} className="correct" alt="correct" />
                     )}
                     {selectedOption === index && selectedOption !== correctAnswer && (
                       <img src={WrongIcon} alt="Incorrect" className="incorrect" />
                     )}
                     {selectedOption !== index && index === correctAnswer && (
-                      <img src={CorrectIcon} className='correct' alt='correct' />
+                      <img src={CorrectIcon} className="correct" alt="correct" />
                     )}
                   </div>
                 )}
               </div>
             ))}
           </div>
-          
+
           {currentQuestionIndex !== -1 && (
             <SubmitButton
               className="submit-button"
@@ -165,11 +191,18 @@ const Question: React.FC<QuestionProps> = ({
               onKeyDown={handleButtonKeyDown}
               tabIndex={0}
             >
-              {submitted && showFeedback ? (currentQuestionIndex === totalQuestions - 1 ? 'Finish Quiz' : 'Next Question') : 'Submit Answer'}
+              {submitted && showFeedback
+                ? currentQuestionIndex === totalQuestions - 1
+                  ? 'Finish Quiz'
+                  : 'Next Question'
+                : 'Submit Answer'}
             </SubmitButton>
           )}
           {attemptedSubmit && selectedOption === null && (
-            <Error> <img src={WrongIcon} alt="Incorrect" className="incorrect" /><p>Please select an answer before submitting</p></Error>
+            <Error ref={errorRef}>
+              <img src={WrongIcon} alt="Incorrect" className="incorrect" />
+              <p>Please select an answer</p>
+            </Error>
           )}
         </MyOptions>
       </QuestionWrapper>

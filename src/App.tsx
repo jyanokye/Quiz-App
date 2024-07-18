@@ -28,9 +28,9 @@ const App: React.FC = () => {
       <MyApp>
         <MyToggleWrapper >
           <div>
-            <div>
+            <div className={`${subject}-Icon`}>
           {subjectIcon && <img src={subjectIcon} alt={`${subject} icon`} />}</div> 
-          <div>{subject}</div>
+          <div><p>{subject}</p></div>
           </div>
           <Toggle isChecked={isDark} handleChange={() => setIsDark(!isDark)}/>
         </MyToggleWrapper>

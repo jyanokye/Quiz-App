@@ -11,18 +11,21 @@ export const QuestionWrapper = styled.div`
   color: ${(props) => props.theme.color};
   justify-content: space-between;
   flex-direction: row;
-  overflow:hidden;
+
   @media only screen and (min-width: 768px) and (max-width: 1024px) { 
   flex-direction:column;
   width:640px;
+  }
+  @media only screen and (min-width: 768px) and (max-width: 1024px){
+  gap:60px;
   }
   @media (max-width: 767px) {
   align-items:center;
  
    flex-direction:column; 
    width:375px;
-   gap:40px;
-    margin-bottom:80px;
+   gap:50px;
+   
   }
 `;
 
@@ -45,14 +48,18 @@ export const MyQuestion = styled.div`
     h2{
     font-size:36px;
     }
+    @media only screen and (min-width: 768px) and (max-width: 1024px) {
+    width:640px;
+     height:242px;
+     }
      @media (max-width: 767px){
       height:129px;
   width:327px;
-  gap:24px;
+
   justify-content:space-between;
      }
   h2{
-        font-size:20px;
+        font-size:30px;
   }
 `;
 
@@ -69,10 +76,12 @@ export const ProgressBarContainer = styled.div`
     background-color: #A729F5; 
     border-radius: 10px;
     transition: width 0.5s ease; 
-  }
+  } @media only screen and (min-width: 768px) and (max-width: 1024px){
+   width:640px;
+   }
      @media (max-width: 767px) {
-     position:relative;
      width:327px;
+     margin-bottom:20px;
    
      }
 `;
@@ -154,7 +163,8 @@ export const MyOptions = styled.div`
   transition: background-color 0.3s, color 0.3s;
   }
   .option p{
-   color: color: ${(props) => props.theme.color};;
+  font-size:20px;
+   color: ${(props) => props.theme.color};;
       font-weight:500; 
   }
     .OptionLetter {
@@ -163,13 +173,18 @@ export const MyOptions = styled.div`
   .OptionLetter p{
    color: #626C7F;
     font-weight: 500;
-  font-size:28px;
+  font-size:25px;
   }
 
   .answer-feedback {
         margin-left: auto;
         margin-right:3px;
     }
+        @media only screen and (min-width: 768px) and (max-width: 1024px){
+        .option {
+   width:640px;}
+   }
+      
         @media (max-width: 767px) {
       height: 360px;
     width: 327px;
@@ -183,6 +198,10 @@ export const MyOptions = styled.div`
    height:40px;
    border-radius:6px;
    }
+   .option p{
+   font-size:15px;
+   }
+
    .OptionLetter p{
    font-size:18px;}
   }
@@ -207,11 +226,16 @@ export const SubmitButton = styled.button`
     border-radius: 24px;
     border: none;
     padding:32px 179.5px 32px 179.5px;
-    margin-top:10px;
+   
 
   &:disabled {
     background-color: #ccc;
   }
+       @media only screen and (min-width: 768px) and (max-width: 1024px){
+
+   width:640px;
+   }
+     
     @media (max-width: 767px){
     width: 327px;
     height: 56px;
@@ -227,4 +251,11 @@ justify-content:center;
 margin: 2px 48px;
 
 p{font-size:16px;
-color: #EE5454;}`;
+color: #EE5454;}
+@media (max-width: 767px){
+padding-top:0px;
+padding-bottom:12px;
+p{
+font-size:15px;
+}
+}`;

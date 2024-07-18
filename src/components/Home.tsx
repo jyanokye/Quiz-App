@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { Apps, Welcome, Options, Option, IconWrapper, MyToggleWrapper } from '../styles/HomeStyle'; // Make sure to import MyToggleWrapper
+import { Apps, Welcome, Options, Option, IconWrapper } from '../styles/HomeStyle'; // Make sure to import correct components
 import htmlIcon from '../assets/images/icon-html.svg';
 import cssIcon from '../assets/images/icon-css.svg';
 import jsIcon from '../assets/images/icon-js.svg';
@@ -14,7 +14,7 @@ type HomeProps = {
 
 const Home: React.FC<HomeProps> = ({ startQuiz, isDark }) => {
   const theme = isDark ? darkTheme : lightTheme;
-  const optionRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const optionRefs = useRef<(HTMLDivElement | null)[]>([null, null, null, null]); // Initialize with actual DOM element refs
 
   const handleOptionKeyDown = (
     event: React.KeyboardEvent<HTMLDivElement>,
@@ -22,17 +22,18 @@ const Home: React.FC<HomeProps> = ({ startQuiz, isDark }) => {
     totalOptions: number
   ) => {
     const options = optionRefs.current;
-  
+
     if (event.key === 'Enter' || event.key === ' ') {
-      const target = options[index] as HTMLDivElement;
-      target.click();
+      const target = options[index];
+      if (target) {
+        target.click(); 
+      }
     } else if (event.key === 'ArrowDown') {
       event.preventDefault();
       const nextIndex = index + 1;
-      if (nextIndex < totalOptions) {
-        options[nextIndex]?.focus();
+      if (nextIndex < totalOptions && options[nextIndex]) {
+        options[nextIndex]!.focus(); 
       } else {
-       
         const themeButton = document.querySelector('.theme-button') as HTMLElement;
         if (themeButton) {
           themeButton.focus();
@@ -41,14 +42,12 @@ const Home: React.FC<HomeProps> = ({ startQuiz, isDark }) => {
     } else if (event.key === 'ArrowUp') {
       event.preventDefault();
       const prevIndex = index - 1;
-      if (prevIndex >= 0) {
-        options[prevIndex]?.focus();
-      } else {
-      
-        options[totalOptions - 1]?.focus();
+      if (prevIndex >= 0 && options[prevIndex]) {
+        options[prevIndex]!.focus(); 
+      } else {  
+        options[totalOptions - 1]!.focus(); 
       }
     } else if (event.key === 'Tab' && index === totalOptions - 1) {
-     
       event.preventDefault();
       const themeButton = document.querySelector('.theme-button') as HTMLElement;
       if (themeButton) {
@@ -56,7 +55,6 @@ const Home: React.FC<HomeProps> = ({ startQuiz, isDark }) => {
       }
     }
   };
-  
 
   return (
     <ThemeProvider theme={theme}>
@@ -93,9 +91,9 @@ const Home: React.FC<HomeProps> = ({ startQuiz, isDark }) => {
           </Option>
           <Option
             className="option"
-            onClick={() => startQuiz('JavaScript', jsIcon)}
+            onClick={() => startQuiz('Javascript', jsIcon)}
             tabIndex={0}
-            onKeyDown={(event) => handleOptionKeyDown(event, 2, 4)}
+            onKeyDown={(event) => handleOptionKeyDown(event, 2, 4)} 
             ref={(ref) => (optionRefs.current[2] = ref)}
           >
             <IconWrapper className="JS-Icon">
