@@ -5,7 +5,7 @@ export const ScoreSection = styled.div`
   height: auto;
   min-height: 512px;
   color: ${(props) => props.theme.color};
-  padding-top: 20px;
+
   min-width: 1157px;
   justify-content: space-between;
   overflow: hidden;
@@ -112,7 +112,7 @@ export const YourScore = styled.div`
     border-radius: 24px;
     border: none;
     padding: 32px 179.5px;
-    margin-top: 32px;
+    
   }
 
   @media only screen and (max-width: 767px) {

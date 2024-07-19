@@ -45,9 +45,9 @@ export const MyToggleWrapper = styled.div`
     display: flex;
     align-items: center;
     height: 56px;
-    max-width: 252px;
-    gap: 34px;
-    justify-content: space-between;
+    width: auto;
+    gap: 15px;
+    
   }
 
   div:first-child div {
@@ -73,10 +73,10 @@ export const MyToggleWrapper = styled.div`
   }
 
   div:first-child div:last-child {
-    max-width: 173px;
+    width: auto;
     font-weight: 500;
     color: ${(props) => props.theme.color};
-    font-size: 20px;
+    font-size: 18px;
   }
 
   @media (max-width: 1024px) {
@@ -84,10 +84,19 @@ export const MyToggleWrapper = styled.div`
   }
 
   @media (max-width: 767px) {
-    margin-top: 20px;
+    margin-top: 150px;
     margin-bottom: 0px;
     width: 375px;
     padding: 26px;
+    height:72px;
+
+      div:first-child {
+      height:40px;
+      }
+      div:first-child div{
+       width: 40px;
+      height:40px;
+      }
   }
 `;
 
@@ -97,7 +106,7 @@ export const MyApp = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
+  min-height: 100dvh;
   width: 100%;
   background-color: ${(props) => props.theme.backgroundColor};
   background-image: url(${(props) => props.theme.backgroundImageDesktop});
@@ -106,13 +115,20 @@ export const MyApp = styled.div`
   overflow-x: hidden;
 
   @media (max-width: 1024px) {
+   
     background-image: url(${(props) => props.theme.backgroundImageTablet});
   }
+    
 
-  @media (max-width: 767px) {
-    padding-bottom: 0px;
+  @media only screen and (min-width: 351px) and(max-width: 767px) {
+    height: 100dvh;
+    padding-bottom:-15px;
     background-image: url(${(props) => props.theme.backgroundImageMobile});
   }
+    @media  only screen and (min-width: 10px) and (max-width: 350px) {
+    min-height: 100dvh;
+    padding-bottom: -15px;
+    }
 `;
 
 export const Welcome = styled.div`
@@ -212,7 +228,7 @@ export const IconWrapper = styled.div`
   @media only screen and (max-width: 767px) {
     width: 40px;
     height: 40px;
-    margin: 12px;
+    
 
     .icon {
       width: 28.57px;
@@ -277,7 +293,7 @@ export const Apps = styled.div`
 
   @media only screen and (max-width: 767px) {
     padding: 32px 24px;
-    height: 100vh;
+    height: 100dvh;
     gap: 40px;
     flex-direction: column;
   }

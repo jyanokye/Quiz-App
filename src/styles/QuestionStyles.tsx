@@ -174,6 +174,11 @@ export const MyOptions = styled.div`
     .option {
       width: 640px;
     }
+      .Know{
+    width:640px;
+    height:392px;
+    gap:12px;
+    }
   }
 
   @media (max-width: 767px) {
@@ -199,7 +204,21 @@ export const MyOptions = styled.div`
     .OptionLetter p {
       font-size: 18px;
     }
+      .Know{
+    width:327px;
+    height:292px;
+    gap:12px;
+    }
+     .answer-feedback {
+   height:32px;
+   width:32px;
+    margin-left: auto;
+    margin-right: 10px;
   }
+
+    
+  }
+    
 `;
 
 export const SubmitButton = styled.button`
