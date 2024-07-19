@@ -48,8 +48,8 @@ Dark Theme Mode
 
 ### Links
 
-- Solution URL: [GitHub Link](https://github.com/jyanokye/Quiz-App)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Solution URL: [Source Code](https://github.com/jyanokye/Quiz-App)
+- Live Site URL: [Quiz App](https://quizapp-anokye-james-projects.vercel.app/)
 
 ## My process
 
@@ -145,5 +145,5 @@ In future projects, I plan to continue focusing on:
 
 ## Acknowledgments
 
-I would like to extend my heartfelt gratitude to Amalitech GmbH for the invaluable opportunity to work on this project as part of their Pre-Selection Training for Prospective National Service Personnel. I also want to express my deep appreciation to my fellow software engineer friends, whose support and insights were crucial in debugging and refining my code.
+My premier thanks go to Amalitech GmbH for the invaluable opportunity to participate in this project as part of their Pre-Selection Training for Prospective National Service Personnel. This appreciation will be incomplete  without acknowledging a few friends who helped review my code.
 
