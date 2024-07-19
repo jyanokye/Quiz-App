@@ -84,7 +84,7 @@ export const MyToggleWrapper = styled.div`
   }
 
   @media (max-width: 767px) {
-    margin-top: 150px;
+    margin-top: 0px;
     margin-bottom: 0px;
     width: 375px;
     padding: 26px;
@@ -115,20 +115,20 @@ export const MyApp = styled.div`
   overflow-x: hidden;
 
   @media (max-width: 1024px) {
-   
     background-image: url(${(props) => props.theme.backgroundImageTablet});
   }
     
 
-  @media only screen and (min-width: 351px) and(max-width: 767px) {
-    height: 100dvh;
+ 
+    @media  only screen and (min-width: 10px) and (max-width: 350px) {
+    min-height: 100vh;
+    padding-bottom: -15px;
+    }
+     @media  (min-width: 351px) and(max-width: 767px) {
+    min-height: 100vh;
     padding-bottom:-15px;
     background-image: url(${(props) => props.theme.backgroundImageMobile});
   }
-    @media  only screen and (min-width: 10px) and (max-width: 350px) {
-    min-height: 100dvh;
-    padding-bottom: -15px;
-    }
 `;
 
 export const Welcome = styled.div`
