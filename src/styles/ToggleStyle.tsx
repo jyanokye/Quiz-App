@@ -7,6 +7,15 @@ import styled from 'styled-components';
   align-items: center;
   width:128px;
   height:28px;
+    
+  @media only screen and (max-width: 767px) {
+    height: 20px;
+    width:80px;
+    div img,div{
+    height: 20px;
+    }
+    }
+
   `;
 
 export const ToggleWrapper = styled.div`
@@ -43,6 +52,11 @@ export const ToggleWrapper = styled.div`
     position: absolute;
     transition: .4s;
     width: 20px;
+
+    @media (max-width: 767px) {
+      height: 12px;
+      width: 12px;
+    }
   }
 
    input:checked + .slider {
@@ -51,6 +65,10 @@ export const ToggleWrapper = styled.div`
 
    input:checked + .slider:before {
     transform: translateX(20px);
+    
+    @media (max-width: 767px) {
+      transform: translateX(12px);
+    }
   }
 
  .slider.round {
@@ -67,5 +85,12 @@ export const ToggleWrapper = styled.div`
     height: 20px;
     top: 50%;
     transform: translateY(-50%);
+  }
+    @media only screen and (max-width: 767px) {
+    height: 20px;
+    .switch{
+       height: 20px;
+       width:32px;
+    }
   }
 `;
